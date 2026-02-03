@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eternart | Original Clothing Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+button{cursor:pointer}
+
+.topbar{display:flex;justify-content:space-between;padding:8px 80px;font-size:11px;background:#000;opacity:.9}
+
+header{position:absolute;top:28px;width:100%;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 90px}
+.logo{font-family:Playfair Display,serif;font-size:26px;letter-spacing:3px}
+nav a{margin-left:30px;font-size:13px;letter-spacing:1.5px;text-decoration:none;color:#fff;opacity:.9;cursor:pointer}
+.nav-right span{margin-left:25px;font-size:12px;opacity:.8;cursor:pointer}
+
+.hero{position:relative;height:100vh;overflow:hidden}
+.bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),url("https://images.unsplash.com/photo-1520975661595-6453be3f7070?w=1800&q=80") center/cover no-repeat;animation:slowZoom 30s infinite alternate;filter:blur(1.5px)}
+.light{position:absolute;width:500px;height:500px;background:radial-gradient(circle, rgba(200,164,107,.35), transparent 60%);pointer-events:none;mix-blend-mode:screen}
+.fabric{position:absolute;inset:0;background-image:url("https://www.transparenttextures.com/patterns/fabric-of-squares.png");opacity:.15;animation:fabricMove 40s linear infinite;pointer-events:none}
+
+.hero-content{position:relative;z-index:5;height:100%;display:flex;align-items:center;padding:0 120px}
+.hero-text{max-width:520px;opacity:0;transform:translateY(40px);transition:1.4s ease}
+.hero-text.show{opacity:1;transform:translateY(0)}
+.hero-text h1{font-family:Playfair Display,serif;font-size:62px}
+.hero-text button{margin-top:30px;padding:14px 34px;border:none;border-radius:30px}
+
+section{padding:160px 120px}
+.section-title{font-family:Playfair Display,serif;font-size:38px;margin-bottom:80px;opacity:0;transform:translateY(30px);transition:1s}
+.section-title.show{opacity:1;transform:translateY(0)}
+
+.showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.look{height:520px;border-radius:20px;overflow:hidden;cursor:pointer;opacity:0;transform:translateY(40px);transition:1s}
+.look.show{opacity:1;transform:translateY(0)}
+.look img{width:100%;height:100%;object-fit:cover;transition:1.2s}
+.look:hover img{transform:scale(1.1)}
+.look-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);display:flex;align-items:flex-end;padding:30px}
+.look-overlay h3{font-family:Playfair Display,serif;font-size:26px}
+
+.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.archive-card{background:#111;padding:30px;border-radius:16px;opacity:.85}
+.archive-card h4{font-family:Playfair Display,serif;font-size:20px;margin-bottom:10px}
+.archive-card span{font-size:12px;opacity:.6}
+
+.contact-box{background:#111;padding:40px;border-radius:16px;font-size:15px;line-height:2}
+
+#detailPage{display:none;min-height:100vh;padding:120px}
+#detailPage img{max-width:500px;width:100%;border-radius:20px;margin-bottom:30px}
+#detailPage h2{font-family:Playfair Display,serif;font-size:42px;margin-bottom:20px}
+
+footer{padding:80px 120px;background:#050505;display:flex;justify-content:space-between;font-size:12px;opacity:.7}
+
+@keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.15)}}
+@keyframes fabricMove{from{background-position:0 0}to{background-position:600px 400px}}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<div>Independent Fashion Studio</div>
+<div>EN · Atelier</div>
+</div>
+
+<header>
+<div class="logo">ETERNART</div>
+<nav>
+<a onclick="navigate('hero')">Studio</a>
+<a onclick="navigate('showcase')">Collections</a>
+<a onclick="navigate('archive')">Archive</a>
+<a onclick="navigate('contact')">Contact</a>
+</nav>
+<div class="nav-right">
+<span onclick="openSearch()">Search</span>
+<span onclick="openAccount()">Account</span>
+</div>
+</header>
+
+<section class="hero" id="hero">
+<div class="bg"></div>
+<div class="light" id="light"></div>
+<div class="fabric"></div>
+<div class="hero-content">
+<div class="hero-text reveal">
+<h1>Crafted Forms<br>Timeless Wear</h1>
+<button onclick="navigate('showcase')">View Collections</button>
+</div>
+</div>
+</section>
+
+<section id="showcase">
+<div class="section-title reveal">Eternart Originals</div>
+<div class="showcase">
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f">
+<div class="look-overlay"><h3>Form I</h3></div>
+</div>
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b">
+<div class="look-overlay"><h3>Structure II</h3></div>
+</div>
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+<div class="look-overlay"><h3>Silhouette III</h3></div>
+</div>
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d">
+<div class="look-overlay"><h3>Texture IV</h3></div>
+</div>
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
+<div class="look-overlay"><h3>Monochrome V</h3></div>
+</div>
+
+<div class="look reveal" onclick="openDetail(this)">
+<img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f">
+<div class="look-overlay"><h3>Balance VI</h3></div>
+</div>
+
+</div>
+</section>
+
+<section id="archive">
+<div class="section-title reveal">Archive</div>
+<div class="archive-grid">
+<div class="archive-card">
+<h4>Raw Beginnings</h4>
+<span>2022 · Experimental silhouettes</span>
+</div>
+<div class="archive-card">
+<h4>Monochrome Edit</h4>
+<span>2023 · Black & white studies</span>
+</div>
+<div class="archive-card">
+<h4>Form & Void</h4>
+<span>2024 · Structural minimalism</span>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="section-title reveal">Contact</div>
+<div class="contact-box">
+<p>Email: eternartstudio@gmail.com</p>
+<p>Instagram: @eternart.studio</p>
+<p>WhatsApp: +91 90000 00000</p>
+<p>Studio: Chennai, India</p>
+</div>
+</section>
+
+<section id="detailPage">
+<img id="detailImg">
+<h2 id="detailTitle"></h2>
+<button onclick="goBack()">Back</button>
+</section>
+
+<footer>
+<p>© 2026 ETERNART STUDIO</p>
+<p>Independent Fashion Label</p>
+</footer>
+
+<div class="modal" id="searchModal"><div class="modal-box"><h3>Search</h3><input placeholder="Search collections..."><button onclick="closeModal()">Close</button></div></div>
+<div class="modal" id="accountModal"><div class="modal-box"><h3>Account</h3><input placeholder="Email"><input placeholder="Password" type="password"><button onclick="closeModal()">Login</button></div></div>
+
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})},{threshold:.25});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+const light=document.getElementById("light");
+document.addEventListener("mousemove",e=>{light.style.transform=`translate(${e.clientX-250}px,${e.clientY-250}px)`});
+
+function navigate(id){closeModal();document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+
+function openDetail(card){
+document.querySelector(".hero").style.display="none";
+document.getElementById("showcase").style.display="none";
+document.getElementById("detailPage").style.display="block";
+detailImg.src=card.querySelector("img").src;
+detailTitle.innerText=card.querySelector("h3").innerText;
+window.scrollTo(0,0)
+}
+
+function goBack(){
+document.getElementById("detailPage").style.display="none";
+document.querySelector(".hero").style.display="block";
+document.getElementById("showcase").style.display="block";
+}
+
+function openSearch(){closeModal();searchModal.style.display="flex"}
+function openAccount(){closeModal();accountModal.style.display="flex"}
+function closeModal(){searchModal.style.display="none";accountModal.style.display="none"}
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()})
+</script>
+
+</body>
+</html>
